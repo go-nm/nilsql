@@ -6,11 +6,11 @@ import (
 	"reflect"
 )
 
-// NilInt64 is an alias for sql.NullInt64 data type
-type NilInt64 sql.NullInt64
+// Int64 is an alias for sql.NullInt64 data type
+type Int64 sql.NullInt64
 
 // Scan implements the Scanner interface for NullInt64
-func (ni *NilInt64) Scan(value interface{}) error {
+func (ni *Int64) Scan(value interface{}) error {
 	var i sql.NullInt64
 	if err := i.Scan(value); err != nil {
 		return err
@@ -18,15 +18,15 @@ func (ni *NilInt64) Scan(value interface{}) error {
 
 	// if nil then make Valid false
 	if reflect.TypeOf(value) == nil {
-		*ni = NilInt64{i.Int64, false}
+		*ni = Int64{i.Int64, false}
 	} else {
-		*ni = NilInt64{i.Int64, true}
+		*ni = Int64{i.Int64, true}
 	}
 	return nil
 }
 
 // MarshalJSON is to convert NullInt64 into JSON data
-func (ni *NilInt64) MarshalJSON() ([]byte, error) {
+func (ni *Int64) MarshalJSON() ([]byte, error) {
 	if !ni.Valid {
 		return []byte("null"), nil
 	}
@@ -34,11 +34,11 @@ func (ni *NilInt64) MarshalJSON() ([]byte, error) {
 	return json.Marshal(ni.Int64)
 }
 
-// NilBool is an alias for sql.NullBool data type
-type NilBool sql.NullBool
+// Bool is an alias for sql.NullBool data type
+type Bool sql.NullBool
 
 // Scan implements the Scanner interface for NullBool
-func (nb *NilBool) Scan(value interface{}) error {
+func (nb *Bool) Scan(value interface{}) error {
 	var b sql.NullBool
 	if err := b.Scan(value); err != nil {
 		return err
@@ -46,16 +46,16 @@ func (nb *NilBool) Scan(value interface{}) error {
 
 	// if nil then make Valid false
 	if reflect.TypeOf(value) == nil {
-		*nb = NilBool{b.Bool, false}
+		*nb = Bool{b.Bool, false}
 	} else {
-		*nb = NilBool{b.Bool, true}
+		*nb = Bool{b.Bool, true}
 	}
 
 	return nil
 }
 
 // MarshalJSON is to convert NullBool into JSON data
-func (nb *NilBool) MarshalJSON() ([]byte, error) {
+func (nb *Bool) MarshalJSON() ([]byte, error) {
 	if !nb.Valid {
 		return []byte("null"), nil
 	}
@@ -63,11 +63,11 @@ func (nb *NilBool) MarshalJSON() ([]byte, error) {
 	return json.Marshal(nb.Bool)
 }
 
-// NilFloat64 is an alias for sql.NullFloat64 data type
-type NilFloat64 sql.NullFloat64
+// Float64 is an alias for sql.NullFloat64 data type
+type Float64 sql.NullFloat64
 
 // Scan implements the Scanner interface for NullFloat64
-func (nf *NilFloat64) Scan(value interface{}) error {
+func (nf *Float64) Scan(value interface{}) error {
 	var f sql.NullFloat64
 	if err := f.Scan(value); err != nil {
 		return err
@@ -75,16 +75,16 @@ func (nf *NilFloat64) Scan(value interface{}) error {
 
 	// if nil then make Valid false
 	if reflect.TypeOf(value) == nil {
-		*nf = NilFloat64{f.Float64, false}
+		*nf = Float64{f.Float64, false}
 	} else {
-		*nf = NilFloat64{f.Float64, true}
+		*nf = Float64{f.Float64, true}
 	}
 
 	return nil
 }
 
 // MarshalJSON is to convert NullFloat64 into JSON data
-func (nf *NilFloat64) MarshalJSON() ([]byte, error) {
+func (nf *Float64) MarshalJSON() ([]byte, error) {
 	if !nf.Valid {
 		return []byte("null"), nil
 	}
@@ -92,11 +92,11 @@ func (nf *NilFloat64) MarshalJSON() ([]byte, error) {
 	return json.Marshal(nf.Float64)
 }
 
-// NilString is an alias for sql.NullString data type
-type NilString sql.NullString
+// String is an alias for sql.NullString data type
+type String sql.NullString
 
 // Scan implements the Scanner interface for NullString
-func (ns *NilString) Scan(value interface{}) error {
+func (ns *String) Scan(value interface{}) error {
 	var s sql.NullString
 	if err := s.Scan(value); err != nil {
 		return err
@@ -104,16 +104,16 @@ func (ns *NilString) Scan(value interface{}) error {
 
 	// if nil then make Valid false
 	if reflect.TypeOf(value) == nil {
-		*ns = NilString{s.String, false}
+		*ns = String{s.String, false}
 	} else {
-		*ns = NilString{s.String, true}
+		*ns = String{s.String, true}
 	}
 
 	return nil
 }
 
 // MarshalJSON is to convert NullString into JSON data
-func (ns *NilString) MarshalJSON() ([]byte, error) {
+func (ns *String) MarshalJSON() ([]byte, error) {
 	if !ns.Valid {
 		return []byte("null"), nil
 	}
